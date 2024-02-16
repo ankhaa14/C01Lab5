@@ -43,44 +43,44 @@ test("/postNote - Post a note", async () => {
 });
 
 test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
-  // const notes = [
-  //   { title: "NoteTitleTest1", content: "NoteTitleContent1" },
-  //   { title: "NoteTitleTest2", content: "NoteTitleContent2" }
-  // ];
+  const notes = [
+    { title: "NoteTitleTest1", content: "NoteTitleContent1" },
+    { title: "NoteTitleTest2", content: "NoteTitleContent2" }
+  ];
 
-  const title = "NoteTitleTest2";
-  const content = "NoteTitleContent2";
+  // const title = "NoteTitleTest2";
+  // const content = "NoteTitleContent2";
 
-  // for (const note of notes) {
-  //   const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(note),
-  //   });
+  for (const note of notes) {
+    const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(note),
+    });
   
-  //   const postNoteBody = await postNoteRes.json();
+    const postNoteBody = await postNoteRes.json();
   
-  //   expect(postNoteRes.status).toBe(200);
-  //   expect(postNoteBody.response).toBe("Note added succesfully.");
-  // }
+    expect(postNoteRes.status).toBe(200);
+    expect(postNoteBody.response).toBe("Note added succesfully.");
+  }
 
-  const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
-    method : "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: title,
-      content: content,
-    }),
-  });
+  // const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+  //   method : "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     title: title,
+  //     content: content,
+  //   }),
+  // });
 
-  const postNoteBody = await postNoteRes.json();
+  // const postNoteBody = await postNoteRes.json();
 
-  expect(postNoteRes.status).toBe(200);
-  expect(postNoteBody.response).toBe("Note added succesfully.");
+  // expect(postNoteRes.status).toBe(200);
+  // expect(postNoteBody.response).toBe("Note added succesfully.");
 
   const getAllNotesRes = await fetch(`${SERVER_URL}/getAllNotes`, {
     method: "GET",
@@ -90,8 +90,6 @@ test("/getAllNotes - Return list of two notes for getAllNotes", async () => {
   });
 
   const getAllNotesBody = await getAllNotesRes.json();
-
-  console.log(getAllNotesBody);
 
   expect(getAllNotesRes.status).toBe(200);
   expect(Array.isArray(getAllNotesBody.response)).toBe(true);
