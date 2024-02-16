@@ -15,6 +15,10 @@ test("/postNote - Post a note", async () => {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      title: title,
+      content: content,
+    }),
   });
 
   const postNoteBody = await postNoteRes.json();
@@ -30,10 +34,6 @@ test("/getAllNotes - Return list of zero notes for getAllNotes", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      title: title,
-      content: content,
-    }),
   });
 
   const getAllNotesBody = await getAllNotesRes.json();
