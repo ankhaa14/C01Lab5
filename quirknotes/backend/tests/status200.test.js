@@ -15,10 +15,6 @@ test("/postNote - Post a note", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      title: title,
-      content: content,
-    }),
   });
 
   const postNoteBody = await postNoteRes.json();
