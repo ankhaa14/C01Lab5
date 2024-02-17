@@ -292,8 +292,38 @@ test("/deleteAllNotes - Delete one note", async () => {
 
 
 test("/deleteAllNotes - Delete three notes", async () => {
-  // Code here
-  expect(false).toBe(true);
+  for (let i = 1; i < 4; i++) {
+    const title = `NoteTitleTest8-${i}`;
+    const content = `NoteContentTest8-${i}`;
+
+    const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        content: content,
+      }),
+    });
+    const postNoteBody = await postNoteRes.json();
+
+    expect(postNoteRes.status).toBe(200);
+    expect(postNoteBody.response).toBe("Note added succesfully.");
+  }
+
+  const deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const deleteAllNotesBody = await deleteAllNotesRes.json();
+
+  expect(deleteAllNotesRes.status).toBe(200);
+  expect(deleteAllNotesBody.response).toBe("3 note(s) deleted.");
+
 });
 
 
