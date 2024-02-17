@@ -250,8 +250,37 @@ test("/patchNote - Patch with just content", async () => {
 
 
 test("/deleteAllNotes - Delete one note", async () => {
-  // Code here
-  expect(false).toBe(true);
+  const title = "NoteTitleTest7";
+  const content = "NoteContentTest7";
+
+  const postNoteRes = await fetch(`${SERVER_URL}/postNote`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: title,
+      content: content,
+    }),
+  });
+
+  const postNoteBody = await postNoteRes.json();
+
+  expect(postNoteRes.status).toBe(200);
+  expect(postNoteBody.response).toBe("Note added succesfully.");
+
+  const deleteAllNotesRes = await fetch(`${SERVER_URL}/deleteAllNotes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const deleteAllNotesBody = await deleteAllNotesRes.json();
+
+  expect(deleteAllNotesRes.status).toBe(200);
+  expect(deleteAllNotesBody.response).toBe("1 note(s) deleted.");
+
 });
 
 
