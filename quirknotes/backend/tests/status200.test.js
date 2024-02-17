@@ -250,6 +250,13 @@ test("/patchNote - Patch with just content", async () => {
 
 
 test("/deleteAllNotes - Delete one note", async () => {
+  await fetch(`${SERVER_URL}/deleteAllNotes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
   const title = "NoteTitleTest7";
   const content = "NoteContentTest7";
 
